@@ -5,8 +5,9 @@ import java.util.List;
 import org.app.example.bean.Categoria;
 
 /**
- *
- * @author rober
+ * @author roberto huangal diaz
+ * @web https://github.com/rhuangal/
+ * @version 2.0
  */
 public interface CategoriaDao {
     

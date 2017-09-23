@@ -11,8 +11,9 @@ import java.util.Properties;
 import org.apache.log4j.Logger;
 
 /**
- *
- * @author rober
+ * @author roberto huangal diaz
+ * @web https://github.com/rhuangal/
+ * @version 2.0
  */
 public class DbConn {
 
@@ -26,22 +27,25 @@ public class DbConn {
         con = null;
         try {
             input = Thread.currentThread().getContextClassLoader().getResourceAsStream("jdbc.properties");
-            //load a properties file from class path, inside static method
+            //Carga las propiedades de la carpeta resources
             props.load(input);
-            // load the Driver Class
+            // Cargamos la libreria de la base de datos
             Class.forName(props.getProperty("jdbc.driver"));
-            // create the connection now
+            // Creamos la conexion a la base de datos
             con = DriverManager.getConnection(props.getProperty("jdbc.url"),
                     props.getProperty("jdbc.username"),
                     props.getProperty("jdbc.password"));
             log.info("Se conecto correctamente.");
         } catch (IOException | ClassNotFoundException | SQLException e) {
-            // TODO Auto-generated catch block
+            // Manejo de errores
             log.error(e);
         }
         return con;
     }
 
+    /*
+    * Cerramos conexion con la base de datos.
+    */
     public static void closeConn(ResultSet rs, Statement stmt, Connection con) {
         try {
             if (rs != null) {
@@ -75,6 +79,10 @@ public class DbConn {
 
     }
 
+    /*
+    * Para prevenir errores al momento de realizar trasacciones en la base de datos,
+      colocamos autocommit false. De esta maneras prevenimos que nuestros cambios se inserten de manera directa.
+    */
     public static void beginTransaction() {
         if (con != null) {
             try {
@@ -85,6 +93,9 @@ public class DbConn {
         }
     }
 
+    /*
+    * Nos permite mandar la confirmacion de procesamiento de las transacciones que estamos enviando.
+    */
     public static void commit() {
         if (con != null) {
             try {
@@ -95,6 +106,10 @@ public class DbConn {
         }
     }
 
+    /*
+    * En caso de errores, podemos revertir las transacciones realizadas y simplemente no se ejecutan en la base de datos.
+      Es bueno sobre todo en el caso que se tuviera que insertar en varias tablas simultaneamente.
+    */
     public static void rollback() {
         if (con != null) {
             try {

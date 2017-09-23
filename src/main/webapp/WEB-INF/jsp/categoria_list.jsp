@@ -1,5 +1,5 @@
 <%-- 
-    Document   : index
+    Document   : categoria_list
     Created on : Sep 15, 2017, 8:36:41 AM
     Author     : rober
 --%>
@@ -60,10 +60,10 @@
                                         <td>${item.cod_categoria}</td>
                                         <td>${item.nom_categoria}</td>
                                         <td>
-                                            <a href="#" class="btn btn-sm btn-info">
-                                                Actualizar
+                                            <a href="<c:url value="/categoria/editar?codigo=${item.cod_categoria}" />" class="btn btn-sm btn-info">
+                                                Editar
                                             </a>
-                                            <a href="#" class="btn btn-sm btn-danger">
+                                            <a href="<c:url value="/categoria/eliminar?codigo=${item.cod_categoria}" />" class="btn btn-sm btn-danger">
                                                 Eliminar
                                             </a> 
                                         </td>

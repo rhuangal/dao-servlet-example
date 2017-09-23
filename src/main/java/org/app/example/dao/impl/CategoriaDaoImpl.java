@@ -12,8 +12,9 @@ import org.app.example.dao.CategoriaDao;
 import org.app.example.util.DbConn;
 
 /**
- *
- * @author rober
+ * @author roberto huangal diaz
+ * @web https://github.com/rhuangal/
+ * @version 2.0
  */
 public class CategoriaDaoImpl implements CategoriaDao {
 
@@ -48,6 +49,7 @@ public class CategoriaDaoImpl implements CategoriaDao {
         try {
             Connection con = DbConn.getConnection();
             PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setInt(1, cod);
             ResultSet rs = stmt.executeQuery();
             DbConn.beginTransaction();
             if (rs.next()) {

@@ -3,7 +3,6 @@ package org.app.example.web;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
-import java.util.logging.Level;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -17,10 +16,11 @@ import org.app.example.bean.Categoria;
 import org.app.example.dao.impl.CategoriaDaoImpl;
 
 /**
- *
- * @author rober
+ * @author roberto huangal diaz
+ * @web https://github.com/rhuangal/
+ * @version 2.0
  */
-@WebServlet(name = "CategoriaServlet", urlPatterns = {"/categoria/listado", "/categoria/nuevo", "/categoria/submit", "/categoria/editar"})
+@WebServlet(name = "CategoriaServlet", urlPatterns = {"/categoria/listado", "/categoria/nuevo", "/categoria/submit", "/categoria/editar", "/categoria/eliminar"})
 public class CategoriaServlet extends HttpServlet {
 
     private static Logger log = Logger.getLogger(CategoriaServlet.class);
@@ -50,14 +50,14 @@ public class CategoriaServlet extends HttpServlet {
                 this.nuevo(request, response);
                 break;
             case "/categoria/editar":
-                
+                this.editar(request, response);
                 break;
             case "/categoria/submit":
                 this.submit(request, response);
                 break;
-            /*default:
-                this.listado(request, response);
-                break; */
+            case "/categoria/eliminar":
+                this.eliminar(request, response);
+                break;
         }
     }
 
@@ -83,6 +83,7 @@ public class CategoriaServlet extends HttpServlet {
     
     protected void editar(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
         int cod = Integer.parseInt(request.getParameter("codigo"));
         Categoria bean = categoriaDao.read(cod);
         request.setAttribute("categoria", bean);
@@ -108,10 +109,20 @@ public class CategoriaServlet extends HttpServlet {
                 break;
             case "Editar":
                 res = categoriaDao.update(bean);
+                request.getSession().setAttribute("resultado", res);
+                response.sendRedirect(request.getContextPath()+"/categoria/editar?codigo="+bean.getCod_categoria());
                 break;
-        }
-       
+        }     
 
+    }
+    
+    protected void eliminar(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException, IllegalAccessException, InvocationTargetException {
+        
+        int cod = Integer.parseInt(request.getParameter("codigo"));
+        categoriaDao.delete(cod);
+        response.sendRedirect(request.getContextPath()+"/categoria/listado");
+        
     }
     
     protected void processUrl(String path, HttpServletRequest request, HttpServletResponse response)

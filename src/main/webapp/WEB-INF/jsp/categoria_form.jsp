@@ -1,5 +1,5 @@
 <%-- 
-    Document   : index
+    Document   : categoria_form
     Created on : Sep 15, 2017, 8:36:41 AM
     Author     : rober
 --%>
@@ -43,9 +43,9 @@
                     <form action="<c:url value="/categoria/submit" />" method="POST">
                         <div class="form-group"> <!-- Name field -->
                             <label class="control-label" for="name">Nombre</label>
-                            <input type="text" class="form-control" id="name" name="nom_categoria" required>
+                            <input type="text" id="name" name="nom_categoria" value="<c:out value="${categoria.nom_categoria}" />" class="form-control" required>
                         </div>
-                        <input type="hidden" name="cod_categoria" value="">
+                        <input type="hidden" name="cod_categoria" value="<c:out value="${categoria.cod_categoria}" />">
                         <input type="hidden" name="strategy" value="<c:out value="${operacion}" />" >
                         <div class="form-group">
                             <button class="btn btn-primary" type="submit">Guardar</button>
