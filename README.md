@@ -23,4 +23,4 @@ Para este ejemplo se esta utilizando el motor de base de datos de MySQL.
 
 ## Licencia
 
-Este proyecto esta bajo la licencia MIT - ver el siguiente archivo para mas detalles [LICENSE.md](LICENSE.md)
+Este proyecto esta bajo la licencia MIT - ver el siguiente archivo para mas detalles [LICENSE](LICENSE.md)
