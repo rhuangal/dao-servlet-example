@@ -21,6 +21,14 @@ pueden ingresar al siguiente enlace el cual es el chat del proyecto:
 
 Para este ejemplo se esta utilizando el motor de base de datos de MySQL.
 
+### Configuración
+
+Para realizar la configuración de la conexión a la base de datos, se debe ingresar los parametros en el archivo [jdbc.properties](src/main/resources/jdbc.properties)
+
+```
+src/main/resources/jdbc.properties
+```
+
 ## Licencia
 
 Este proyecto esta bajo la licencia MIT - ver el siguiente archivo para mas detalles [LICENSE.md](LICENSE)
