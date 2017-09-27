@@ -19,7 +19,11 @@ pueden ingresar al siguiente enlace el cual es el chat del proyecto:
 
 ### Base de datos
 
-Para este ejemplo se esta utilizando el motor de base de datos de MySQL.
+Para este ejemplo se esta utilizando el motor de base de datos de MySQL. Pueden utilizar el archivo [biblioteca_mysql_backup.sql](src/main/resources/biblioteca_mysql_backup.sql) para poder restaurar las tablas del ejemplo.
+
+```
+src/main/resources/biblioteca_mysql_backup.sql
+```
 
 ### Configuración
 
